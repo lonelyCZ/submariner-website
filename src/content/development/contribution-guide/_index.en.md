@@ -106,7 +106,21 @@ To be expanded
 
 #### General Availability
 
-To be expanded
+Once a release candidate is deemed stable and has no blocker bugs it will be released for general availability.
+Prior to releasing, the release manager will verify that there have been no changes on the stable branches since the last release
+candidate.
+This ensures that the release version is as stable as possible, and avoids any bugs that might have crept in and that could pose a risk
+to the stability of the released version.
+
+The new version will be announced per the [announcement guidelines] in the release process documentation.
+
+The [current release board](#current-release-board) will be closed, and all open tasks on it will be moved back to the
+[backlog board](#backlog-board).
+The tasks could then be considered for the next version, based on the [planning](#pre-planning) guidelines.
+
+During the week when the general availability release is performed, the next version will be planned.
+Additionally, a meeting to retrospect the last release cycle will be held.
+There will be no dedicated [test day](#test-days), as the release candidate has been tested and no changes have occurred since.
 
 ### Unplanned Work
 
@@ -123,3 +137,5 @@ To be expanded
 ### Test Days
 
 To be expanded
+
+[announcement guidelines]: ../release-process/#step-7-announce-release
