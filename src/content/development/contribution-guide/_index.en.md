@@ -80,10 +80,9 @@ To be expanded
 
 #### Ongoing Maintenance
 
-Tasks that relate to ongoing maintenance (version bumps, image trimmings, CI and automation) will usually be small and unplanned
-tasks that we can't plan ahead for, but we know there will always be work to do.
-Use label "maintenance" on the issue.
-In case the task has a major effect (e.g. needs more than a few days of work) then it should go through an exception process.
+Tasks that relate to ongoing maintenance (version bumps, image trimmings, CI and automation) will usually be small, unplanned tasks that
+typically occur throughout each release cycle. The associated GitHub issue / PR should be labeled as "maintenance".
+If the task has a major effect (e.g. needs more than a day of work), then it should go through the exception process.
 
 #### Exception Process
 
