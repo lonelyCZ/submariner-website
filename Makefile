@@ -1,4 +1,5 @@
-URL := http://localhost:1313
+PORT ?= 1313
+BIND ?= localhost
 OPEN_CMD := $(shell command -v open || command -v xdg-open || echo : 2>/dev/null)
 HUGO_VERSION := v0.71.0
 OUTPUT_DIR:=/
@@ -10,8 +11,8 @@ hugo:
 	@./hugo --get-version $(HUGO_VERSION)
 
 server: hugo
-	(sleep 2; $(OPEN_CMD) $(URL)) &
-	./hugo server -w -s src
+	(sleep 2; $(OPEN_CMD) http://localhost:$(PORT)) &
+	./hugo server -w -s src --bind=$(BIND) --port=$(PORT)
 
 static: hugo
 	./hugo -D -s src -b $(OUTPUT_DIR) -d ../output/$(OUTPUT_DIR)

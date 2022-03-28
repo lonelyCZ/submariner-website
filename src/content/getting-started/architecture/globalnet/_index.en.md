@@ -25,7 +25,7 @@ Globalnet is a virtual network specifically to support Submariner's multi-cluste
 subnet from this virtual Global Private Network, configured as new cluster parameter `GlobalCIDR` (e.g. 242.0.0.0/8) which is
 configurable at time of deployment. User can also manually specify GlobalCIDR for each cluster that is joined to the Broker using the flag
 ```globalnet-cidr``` passed to ```subctl join``` command. If Globalnet is not enabled in the Broker or if a GlobalCIDR is preconfigured in
-the cluster, the supplied globalnet-cidr will be ignored.
+the cluster, the supplied Globalnet CIDR will be ignored.
 
 ### Cluster-scope global egress IPs
 
@@ -55,7 +55,7 @@ Gateway node of the cluster.
 ![Figure 2 - Globalnet priority](/images/globalnet/globalnet-priority.png)
 <!-- Image Source: https://docs.google.com/presentation/d/180CtHZnr9PP5Rh98VEmkQz3ovc5AGXG9wosoHMLhgaY/edit -->
 
-### submariner-globalnet
+### `submariner-globalnet`
 
 Submariner Globalnet is a component that provides cross-cluster connectivity from pods to remote services using their global IPs. Compiled as
 binary `submariner-globalnet`, it is responsible for maintaining a pool of global IPs, allocating IPs from the global IP pool to pods and
@@ -87,7 +87,7 @@ Globalnet currently relies on `kube-proxy` and thus will only work with deployme
 
 Connectivity is only part of the solution as pods still need to know the IPs of services on remote clusters.
 
-This is achieved by enhancing [lighthouse](https://github.com/submariner-io/lighthouse) with support for Globalnet. The Lighthouse
+This is achieved by enhancing [Lighthouse](https://github.com/submariner-io/lighthouse) with support for Globalnet. The Lighthouse
 controller uses a service's global IP when creating the `ServiceImport` for services of type `ClusterIP`. For headless services,
 backing pod's global IP is used when creating the `EndpointSlice` resources to be distributed to other clusters.
 The [Lighthouse plugin](https://github.com/submariner-io/lighthouse/tree/devel/plugin/lighthouse) then uses the global IPs when
@@ -96,6 +96,32 @@ replying to DNS queries.
 ## Building
 
 Nothing extra needs to be done to build `submariner-globalnet` as it is built with the standard Submariner build.
+
+## Prerequisites
+
+Allow Globalnet controller to create/update/delete the `Service` with `externalIPs` by below steps:
+
+1. Disable [DenyServiceExternalIPs](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/#denyserviceexternalips),
+if enabled.
+2. Restrict the use of the `Service` with `externalIPs`:
+    * OpenShift: No extra configuration is needed.
+    The default
+    [network.openshift.io/ExternalIPRanger](https://docs.openshift.com/container-platform/4.9/architecture/admission-plug-ins.html)
+    validating admission plug-in allows the use of the `Service` with `externalIPs` only for users with permission to handle
+    the `service/externalips` resource in the `network.openshift.io` group.
+    By default, `submariner-globalnet`'s `ServiceAccount` has such an RBAC rule.
+    * Other Kubernetes distributions:
+    Enable [externalip-webhook](https://github.com/kubernetes-sigs/externalip-webhook) while specifying `allowed-external-ip-cidrs` to
+    include the `GlobalCIDR` allocated to the cluster and `allowed-usernames` to include
+    `system:serviceaccount:submariner-operator:submariner-globalnet`.
+
+{{% notice note %}}
+The steps above are necessary because for every exported `Service`, Submariner
+Globalnet internally creates a `Service` with `externalIPs` and sets the `externalIPs`
+to the globalIP assigned to the respective `Service`.
+Some deployments of Kubernetes do not allow the `Service` with `externalIPs` to be created
+for [security reasons](https://github.com/kubernetes/kubernetes/issues/97076).
+{{% /notice %}}
 
 ## Usage
 

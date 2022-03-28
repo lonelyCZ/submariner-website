@@ -55,7 +55,7 @@ contains the following details:
 |:--------------------------------------|:---------------------------------------------------------------------------------------------------|
 | `--kubeconfig` `<string>`             | Absolute path(s) to the kubeconfig file(s) (default `$HOME/.kube/config`)
 | `--kubecontext` `<string>`            | kubeconfig context to use
-| `--repository` `<string>`             | The repository from where the various Submariner images will be sourced (default "quay.io/submariner")
+| `--repository` `<string>`             | The repository from where the various Submariner images will be sourced (default `quay.io/submariner`)
 | `--version` `<string>`                | Image version (default image tag "devel")
 | `--components <strings>`              | Comma-separated list of components to be installed - any of `service-discovery`,`connectivity`. The default is: `service-discovery`,`connectivity`
 | `--globalnet`                         | Enable support for overlapping Cluster/Service CIDRs in connecting clusters (default disabled)
@@ -143,9 +143,9 @@ deployment.
 <!-- markdownlint-disable line-length -->
 | Flag                                    | Description
 |:----------------------------------------|:----------------------------------------------------------------------------|
-| `--repository` `<string>`               | The repository from where the various Submariner images will be sourced (default "quay.io/submariner")
+| `--repository` `<string>`               | The repository from where the various Submariner images will be sourced (default `quay.io/submariner`)
 | `--version` `<string>`                  | Image version (default image tag "devel")
-| `--image-override` `<string>=<string>`  | Component image override. This flag can be used more than once (example: --image-override=submariner=quay.io/myUser/submariner:latest)
+| `--image-override` `<string>=<string>`  | Component image override. This flag can be used more than once (example: `--image-override=submariner=quay.io/myUser/submariner:latest`)
 <!-- markdownlint-enable line-length -->
 
 #### `join` flags (health check)
@@ -235,7 +235,7 @@ that this verification is disruptive.
 | `--connection-attempts` `<value>`   | The maximum number of connection attempts (default 2)
 | `--connection-timeout` `<value>`    | The timeout in seconds per connection attempt  (default 60)
 | `--operation-timeout` `<value>`     | Operation timeout for Kubernetes API calls (default 240)
-| `--report-dir` `<string>`           | XML report directory (default ".")
+| `--junit-report` `<string>`         | XML report path and name (default "")
 | `--verbose`                         | Produce verbose logs during connectivity verification
 | `--only`                            | Comma separated list of specific verifications to perform
 | `--disruptive-tests`                | Enable verifications which are potentially disruptive to your deployment
@@ -393,7 +393,7 @@ This command prepares an OpenShift installer-provisioned infrastructure (IPI) on
 | Flag                             | Description
 |:---------------------------------|:--------------------------------------------------------------------------------------------------------------------------|
 | `--credentials` `<string>`       | GCP credentials configuration file (default `$HOME/.gcp/osServiceAccount.json`)
-| `--dedicated-gateway`            | Whether a dedicated gateway node has to be deployed (default false)
+| `--dedicated-gateway`            | Whether a dedicated gateway node has to be deployed (default true)
 | `--gateway-instance` `<string>`  | Type of gateway instance machine (default `n1-standard-4`)
 | `--gateways` `<int>`             | Number of dedicated gateways to deploy (default 1)
 | `--infra-id` `<string>`          | GCP infra ID
@@ -481,7 +481,7 @@ This command uninstalls Submariner and its components.
 The following steps are performed:
 
 * Delete Submariner ClusterRoles and ClusterRoleBindings.
-* Delete the submariner.io CRDs.
+* Delete the `submariner.io` CRDs.
 * Delete the routing entries (iptables/routes/ipsets) programmed on the nodes.
 * Delete the tunnel interfaces created for internal/external communication.
 * Delete the Submariner namespace.
@@ -493,5 +493,5 @@ The following steps are performed:
 | Flag                             | Description
 |:---------------------------------|:--------------------------------------------------------------------------------------------------------------------------|
 | `--kubeconfig` `<string>`        | Absolute path(s) to the kubeconfig file(s)
-| `--namespace` `<string>`         | Namespace in which Submariner is installed (default "submariner-operator")
+| `--namespace` `<string>`         | Namespace in which Submariner is installed (default `submariner-operator`)
 | `--yes`                          | Automatically answer yes to confirmation prompt
