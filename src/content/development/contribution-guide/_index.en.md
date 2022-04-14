@@ -78,15 +78,27 @@ To be expanded
 
 ### Unplanned Work
 
+During the work on a release, there will be tasks which the team have to add to the projects which was unknown at the planning phase.
+There are 3 type of those tasks:
+
+* [Bugs](#bugs).
+* Ongoin maintenance.
+* New [Epics](#epics) or small independent tasks that need to start work on.
+
+Bugs do not need to be part of a release planning, and the two other types are listed below:
+
 #### Ongoing Maintenance
 
 Tasks that relate to ongoing maintenance (version bumps, image trimmings, CI and automation) will usually be small, unplanned tasks that
 typically occur throughout each release cycle. The associated GitHub issue / PR should be labeled as "maintenance".
-If the task has a major effect (e.g. needs more than a day of work), then it should go through the exception process.
 
 #### Exception Process
 
-To be expanded
+In some cases, a task or an epic will need to be worked on in the middle of a release cycle.
+Any task should be reported and triaged in the backlog board.
+For an epic, an enhancement proposal need to be draft and merged in the same manner for all other epics.
+Bring it up to discussion in the weekly community meeting. It's up to the proposer to convince why this issue takes precedence
+over pre-planned issues. The epic should get 50% approval to be accepted. A label "unplanned" should be added to the epic.
 
 ### Test Days
 
