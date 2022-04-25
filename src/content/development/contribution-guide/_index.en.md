@@ -82,23 +82,33 @@ During the work on a release, there will be tasks which the team have to add to 
 There are 3 type of those tasks:
 
 * [Bugs](#bugs).
-* Ongoin maintenance.
-* New [Epics](#epics) or small independent tasks that need to start work on.
+* Ongoing maintenance.
+* New [epics](#epics) or independent [tasks](#tasks).
 
-Bugs do not need to be part of a release planning, and the two other types are listed below:
+The team triages all tasks and bugs as part of a weekly meeting.
+The bugs can be worked on immediately, while other types of issues are described below.
 
 #### Ongoing Maintenance
 
 Tasks that relate to ongoing maintenance (version bumps, image trimmings, CI and automation) will usually be small, unplanned tasks that
-typically occur throughout each release cycle. The associated GitHub issue / PR should be labeled as "maintenance".
+typically occur throughout each release cycle. The associated GitHub issue / PR should be labeled as `maintenance`.
 
 #### Exception Process
 
-In some cases, a task or an epic will need to be worked on in the middle of a release cycle.
-Any task should be reported and triaged in the backlog board.
-For an epic, an enhancement proposal need to be draft and merged in the same manner for all other epics.
-Bring it up to discussion in the weekly community meeting. It's up to the proposer to convince why this issue takes precedence
-over pre-planned issues. The epic should get 50% approval to be accepted. A label "unplanned" should be added to the epic.
+In some cases, a task or an epic will be reported in the middle of a release cycle.
+Small and medium sized tasks will be triaged and prioritized in the same manner as other issues.
+Once triaged and prioritized, small and medium tasks can be worked on according to their priority.
+
+Epics would need to undergo an exception process.
+The epic's proponent would need to bring it up to discussion in the weekly community meeting.
+It's up to them to convince why this issue takes precedence over other pre-planned and triaged issues.
+A 50% approval from the project team is required for it to be accepted in the middle of the release.
+If the epic is approved during the exception process:
+
+* The team might de-scope other tasks or epics.
+* A label `unplanned` should be added to it.
+* It would require an enhancement proposal to be drafted and reviewed in the same manner as all other epics.
+* If the enhancement proposal is accepted and merged, work on the epic can begin.
 
 ### Test Days
 
