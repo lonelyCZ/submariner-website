@@ -4,6 +4,17 @@ title = "Releases"
 weight = 40
 +++
 
+## v0.12.1
+
+### Bug fixes
+
+* The default image type for Openstack Cloud prepare is changed to a smaller one when the dedicated gateway node is selected.
+* `subctl gather` will now use `libreswan` as  a default cable driver if none is specified in `SubmarinerSpec` during installation.
+* Sometimes when Submariner is used to connect onPrem clusters with Public clusters, MTU issues are seen. This was particularly noticed
+when the underlying platform uses `nftables` on the host nodes. This release fixes the MTU issues by explicitly clamping the TCP MSS to a
+fixed value derived from the default interface MTU subtracted with the cable-driver overhead.
+* As part of `subctl uninstall` operation, we now remove the globalIP annotation that is added on the Gateway node.
+
 ## v0.12.0
 
 ### New features
